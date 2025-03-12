@@ -2,13 +2,13 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router";
-import App from "./app";
+import { RouterProvider } from "react-router-dom";
+import "./index.css";
+import { router } from "./routes/router.jsx";
 
-const root = document.getElementById("root");
-
-ReactDOM.createRoot(root).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <div className="max-w-lg mx-auto"></div>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );
