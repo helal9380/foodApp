@@ -3,6 +3,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
 .active {
-  color: #cdab02;
+  color: #ffa300;
   background-color: none;
+}
+@theme {
+  --color-primary: #ffa300;
 }
