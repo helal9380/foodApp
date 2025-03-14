@@ -1,9 +1,12 @@
 /** @format */
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const { initialPath } = useParams();
+
   const links = (
     <>
       <li>
@@ -47,7 +50,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/ourmeno"
+          to={`/menu`}
           className={({ isActive, isPending }) =>
             isPending
               ? "pending"
@@ -60,7 +63,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/ourshop"
+          to={`/shop/${initialPath || "salad"}`}
           className={({ isActive, isPending }) =>
             isPending
               ? "pending"

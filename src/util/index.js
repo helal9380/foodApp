@@ -1,4 +1,7 @@
 /** @format */
+
+/** @format */
+
 const getImageUrl = (num) => {
   return new URL(`../assets/0${num}.jpg`, import.meta.url).href;
 };
@@ -14,4 +17,5 @@ const getStars = (rating) => {
     i < rating ? fullStar : emptyStar
   ).join(" ");
 };
+
 export { getCategoryImageUrl, getImageUrl, getStars };
