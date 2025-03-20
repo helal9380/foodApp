@@ -1,11 +1,22 @@
 /** @format */
-import React from "react";
+import { useContext } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useParams } from "react-router";
-import { NavLink } from "react-router-dom";
-
+import { Link, NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../context";
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
   const { initialPath } = useParams();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => toast(` the user logout successfully`))
+      .then((error) => {
+        console.log(error);
+      });
+  };
 
   const links = (
     <>
@@ -129,7 +140,11 @@ const Navbar = () => {
             />{" "}
           </svg>
         </div>
-        <button>LOG OUT</button>
+        <button
+          onClick={user && handleLogOut}
+          className="cursor-pointer">
+          {user ? "LOGOUT" : <Link to="/login">LOGIN</Link>}
+        </button>
         <FaUserCircle className="text-2xl" />
       </div>
     </div>

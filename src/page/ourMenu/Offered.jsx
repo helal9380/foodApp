@@ -20,7 +20,7 @@ const Offered = ({ menu, name }) => {
       </div>
       <div className="flex justify-center items-center">
         <Link
-          to={`/shop/${name}`}
+          to={`/shop/salad`}
           className="btn hover:bg-[#FFA300]">
           ORDER NOW
         </Link>
