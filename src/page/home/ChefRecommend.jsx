@@ -13,7 +13,7 @@ const ChefRecommend = () => {
         setChefRecommend(data.filter((item) => item.category === "salad"))
       );
   }, []);
-  console.log(chefRecommends);
+
   return (
     <div>
       <SectionTitle

@@ -14,12 +14,13 @@ import Navbar from "../home/Navbar";
 
 const ShopPage = () => {
   // const { menu } = useMenu();
+  const { menu, isLoading } = useMenu();
   const categories = ["salad", "pizza", "dessert", "soup", "drinks"];
   const { category } = useParams();
-  const index = categories.indexOf(category);
-  const [tabIndex, setTabIndex] = useState(index);
 
-  const { menu, isLoading } = useMenu();
+  const index = categories.indexOf(category);
+  const [tabIndex, setTabIndex] = useState(index !== -1 ? index : 0);
+
   const salad = menu.filter((item) => item.category === "salad");
   const dessert = menu.filter((item) => item.category === "dessert");
   const pizza = menu.filter((item) => item.category === "pizza");
@@ -45,7 +46,7 @@ const ShopPage = () => {
             <Tab>DRINKS</Tab>
           </TabList>
           {isLoading ? (
-            <div className="text-xl">
+            <div className=" text-xl flex justify-center my-10">
               <Loading category={category} />
             </div>
           ) : (
