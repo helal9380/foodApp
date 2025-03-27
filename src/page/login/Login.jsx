@@ -1,19 +1,27 @@
 /** @format */
 import { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import loginImg from "../../assets/login.jpg";
 import { AuthContext } from "../../context";
 import Navbar from "../home/Navbar";
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from.pathname || "/";
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     signIn(email, password)
-      .then(() => toast(`Login success`))
+      .then(() => {
+        toast(`Login success`);
+        navigate(from, { replace: true });
+      })
       .catch((error) => console.log(error));
   };
   return (

@@ -1,14 +1,17 @@
 /** @format */
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from "../hook/useAuth";
 import useAxiosSecure from "../hook/useAxiosSecure";
+import useCart from "../hook/useCart";
 
 const ChefRecommendCard = ({ item }) => {
+  const [, refetch] = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
+  const location = useLocation();
 
   const handleAddToCart = async () => {
     if (user && user.email) {
@@ -22,10 +25,11 @@ const ChefRecommendCard = ({ item }) => {
       };
       const res = await axiosSecure.post("/carts", userSelectItem);
       if (res.data.insertedId) {
+        refetch();
         toast("successfully added to the cart");
       }
     } else {
-      navigate("/login");
+      navigate("/login", { state: { from: location } });
     }
   };
   return (

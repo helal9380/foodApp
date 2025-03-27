@@ -1,11 +1,13 @@
 /** @format */
 import { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import loginImg from "../../assets/login.jpg";
 import { AuthContext } from "../../context";
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -14,7 +16,8 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        toast(` the ${result.user.email} added successfully`);
+        toast(` the ${result.user.email} create successfully`);
+        navigate("/login", { state: { from: location } });
       })
       .catch((error) => console.log(error.massege));
   };
