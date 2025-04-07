@@ -20,6 +20,9 @@ const Login = () => {
     signIn(email, password)
       .then(() => {
         toast(`Login success`);
+        if (from === "/register") {
+          return navigate("/");
+        }
         navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));

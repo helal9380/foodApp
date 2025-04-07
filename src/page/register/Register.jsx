@@ -4,22 +4,37 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import loginImg from "../../assets/login.jpg";
 import { AuthContext } from "../../context";
+import useAxiosPublic from "../../hook/useAxiosPublic";
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, logOut } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
+    const name = e.target.name;
+    const photo = e.target.photo;
     const email = form.email.value;
     const password = form.password.value;
 
-    createUser(email, password)
-      .then((result) => {
-        toast(` the ${result.user.email} create successfully`);
-        navigate("/login", { state: { from: location } });
-      })
-      .catch((error) => console.log(error.massege));
+    createUser(email, password).then((result) => {
+      console.log(result);
+      // create user in the database
+      const userInfo = {
+        email,
+      };
+      axiosPublic
+        .post("/users", userInfo)
+        .then((res) => {
+          if (res.data.insertedId) {
+            toast(` the ${result.user.email} create successfully`);
+            logOut();
+            navigate("/login", { state: { from: location } });
+          }
+        })
+        .catch((error) => console.log(error));
+    });
   };
   return (
     <div
@@ -41,6 +56,13 @@ const Register = () => {
               className="input w-full bg-transparent border-[#e49917]"
               placeholder="Name"
               name="name"
+            />
+            <label className="fieldset-label">Photo</label>
+            <input
+              type="text"
+              className="input w-full bg-transparent border-[#e49917]"
+              placeholder="Photo URL"
+              name="photo"
             />
             <label className="fieldset-label">Email</label>
             <input
