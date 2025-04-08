@@ -8,11 +8,13 @@ import { RiHome2Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import { TbBrandBooking } from "react-icons/tb";
 import { Link, Outlet } from "react-router-dom";
+import useAdmin from "../../hook/useAdmin";
 import useCart from "../../hook/useCart";
 
 const Dashboard = () => {
   const [cart] = useCart();
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  console.log(isAdmin);
   return (
     <div className="flex">
       <div className="w-3/12 bg-[#bc5800] h-screen text-white p-10">
