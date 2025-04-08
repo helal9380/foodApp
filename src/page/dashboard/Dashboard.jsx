@@ -14,7 +14,7 @@ import useCart from "../../hook/useCart";
 const Dashboard = () => {
   const [cart] = useCart();
   const [isAdmin] = useAdmin();
-  console.log(isAdmin);
+
   return (
     <div className="flex">
       <div className="w-3/12 bg-[#bc5800] h-screen text-white p-10">
