@@ -3,7 +3,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { TiDelete } from "react-icons/ti";
 import Swal from "sweetalert2";
-import SectionTitle from "../../components/SectionTitle";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 
 const Users = () => {
@@ -73,11 +72,6 @@ const Users = () => {
   };
   return (
     <div className="bg-gray-100">
-      <SectionTitle
-        title={"Users"}
-        subtitle={"Manage Users"}
-      />
-
       <div className="bg-white p-4 rounded-lg mx-4">
         <h3 className="text-2xl font-semibold uppercase">
           Total Users ({users.length})

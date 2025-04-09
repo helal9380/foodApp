@@ -56,7 +56,7 @@ const AuthContextProvider = ({ children }) => {
     });
 
     return () => unsubscribe(); // Cleanup listener
-  }, [loading]);
+  }, [loading, axiosPublic]);
   const updateUserInfo = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,

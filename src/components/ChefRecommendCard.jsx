@@ -43,10 +43,7 @@ const ChefRecommendCard = ({ item }) => {
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title">{item.name}</h2>
-        <p>
-          A card component has a figure, a body part, and inside body there are
-          title and actions parts
-        </p>
+        <p>{item.recipe}</p>
         <div className="card-actions">
           <button
             onClick={handleAddToCart}

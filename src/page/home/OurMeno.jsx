@@ -6,7 +6,7 @@ import Loading from "../../components/Loading";
 import SectionTitle from "../../components/SectionTitle";
 import useMenu from "../../hook/useMenu";
 const OurMeno = () => {
-  const { menu, isLoading } = useMenu();
+  const [menu, isLoading] = useMenu();
   const popular = menu.filter((item) => item.category === "popular");
 
   return (

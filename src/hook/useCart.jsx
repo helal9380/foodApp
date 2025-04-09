@@ -6,7 +6,7 @@ import useAxiosSecure from "../hook/useAxiosSecure";
 
 const useCart = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const {
     data: cart = [],
     refetch,

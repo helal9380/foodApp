@@ -15,7 +15,9 @@ const Carts = () => {
     return (accumulator += item.price);
   }, 0);
 
-  console.log(cart);
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const handleDelete = (item) => {
     Swal.fire({
@@ -46,7 +48,11 @@ const Carts = () => {
       <div className="text-center space-y-2 my-5 flex justify-between items-center">
         <h2 className="text-2xl">All Carts Here! ({cart.length})</h2>
         <h2 className="uppercase text-xl">Total price : ${totalPrice}</h2>
-        <button className="btn bg-[#bc5800] text-white">Paid</button>
+        <button
+          className="btn bg-[#bc5800] text-white"
+          disabled={cart.length === 0}>
+          Paid
+        </button>
       </div>
       {isLoading ? (
         <>
@@ -67,39 +73,43 @@ const Carts = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-              {cart.map((item) => (
-                <tr key={item._id}>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src={item.image}
-                            alt="Avatar Tailwind CSS Component"
-                          />
+              {cart.length === 0 ? (
+                <p>No Data Found</p>
+              ) : (
+                cart.map((item) => (
+                  <tr key={item._id}>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle h-12 w-12">
+                            <img
+                              src={item.image}
+                              alt="Avatar Tailwind CSS Component"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    {item.name}
-                    <br />
-                  </td>
-                  <td>${item.price}</td>
-                  <th>
-                    <button className="btn hover:bg-[#FFA300] btn-xs">
-                      <FaMoneyCheck className="text-xl" />
-                    </button>
-                  </th>
-                  <th>
-                    <button
-                      onClick={() => handleDelete(item)}
-                      className="btn hover:bg-[#FFA300] btn-xs">
-                      <MdDelete className="text-xl" />
-                    </button>
-                  </th>
-                </tr>
-              ))}
+                    </td>
+                    <td>
+                      {item.name}
+                      <br />
+                    </td>
+                    <td>${item.price}</td>
+                    <th>
+                      <button className="btn hover:bg-[#FFA300] btn-xs">
+                        <FaMoneyCheck className="text-xl" />
+                      </button>
+                    </th>
+                    <th>
+                      <button
+                        onClick={() => handleDelete(item)}
+                        className="btn hover:bg-[#FFA300] btn-xs">
+                        <MdDelete className="text-xl" />
+                      </button>
+                    </th>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

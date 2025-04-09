@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex">
-      <div className="w-3/12 bg-[#bc5800] h-screen text-white p-10">
+      <div className="w-3/12 bg-[#bc5800] max-h-screen text-white p-10">
         <div className="mb-10">
           <h3 className="text-xl font-semibold">BISTRO BOSS</h3>
           <p className="tracking-[6px] text-start uppercase">resturant</p>
@@ -44,7 +44,7 @@ const Dashboard = () => {
               <li>
                 <Link
                   className="flex gap-2 uppercase"
-                  to={"/dashboard/cart"}>
+                  to={"/dashboard/addItem"}>
                   <ImSpoonKnife className="text-xl" />
                   ADD ITEM
                 </Link>

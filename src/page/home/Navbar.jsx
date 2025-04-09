@@ -131,21 +131,16 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end space-x-4">
-        {/* You can open the modal using document.getElementById('ID').showModal() method */}
         <Link to={"/dashboard/cart"}>
-          <button
-            className=" relative flex items-center  gap-2 px-4 py-2 shadow-md"
-            onClick={() => document.getElementById("my_modal_3").showModal()}>
+          <button className=" relative flex items-center  gap-2 px-4 py-2 shadow-md">
             <FaCartShopping className="text-xl" />
-            {cart.length > 0 && (
-              <div className="absolute -top-2 -right-2 bg-[#e49917] text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
-                +{cart.length}
-              </div>
-            )}
+            <div className="absolute -top-2 -right-2 bg-[#e49917] text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
+              +{cart.length}
+            </div>
           </button>
         </Link>
         <button
-          onClick={user && handleLogOut}
+          onClick={handleLogOut}
           className="cursor-pointer">
           {user ? "LOGOUT" : <Link to="/login">LOGIN</Link>}
         </button>

@@ -14,7 +14,8 @@ import Navbar from "../home/Navbar";
 
 const ShopPage = () => {
   // const { menu } = useMenu();
-  const { menu, isLoading } = useMenu();
+  const [menu, isLoading] = useMenu();
+
   const categories = ["salad", "pizza", "dessert", "soup", "drinks"];
   const { category } = useParams();
 
@@ -26,6 +27,9 @@ const ShopPage = () => {
   const pizza = menu.filter((item) => item.category === "pizza");
   const soup = menu.filter((item) => item.category === "soup");
   const drinks = menu.filter((item) => item.category === "drinks");
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>
