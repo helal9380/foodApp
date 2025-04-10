@@ -51,21 +51,21 @@ const AddItem = () => {
         title="What is new!"
         subtitle="ADD AN ITEM"></SectionTitle>
 
-      <div className="md:w-xl mx-auto">
+      <div className="w-full md:w-2xl mx-auto px-2">
         <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset className="fieldset">
-            <legend className="fieldset-legend">Recipe Name</legend>
+            <legend className="fieldset-legend text-[16px]">Recipe Name</legend>
             <input
               {...register("recipe")}
               type="text"
               className="input w-full"
-              placeholder="Type here"
+              placeholder="Type Recipe Name..."
             />
           </fieldset>
 
           <div className="md:flex gap-6 w-full">
             <fieldset className="fieldset w-full">
-              <legend className="fieldset-legend">Category</legend>
+              <legend className="fieldset-legend text-[16px]">Category</legend>
               <select
                 {...register("category")}
                 defaultValue="Pick a Category"
@@ -79,7 +79,7 @@ const AddItem = () => {
               </select>
             </fieldset>
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Price</legend>
+              <legend className="fieldset-legend text-[16px]">Price</legend>
               <input
                 {...register("price")}
                 type="number"
@@ -89,23 +89,25 @@ const AddItem = () => {
             </fieldset>
           </div>
           <fieldset className="fieldset w-full">
-            <legend className="fieldset-legend">Recipe Details</legend>
+            <legend className="fieldset-legend text-[16px]">
+              Recipe Details
+            </legend>
             <textarea
               {...register("details")}
               className="textarea h-24 w-full"
               placeholder="Recipe Details"></textarea>
           </fieldset>
-          <div className="my-2">
+          <div className="my-2 w-full">
             <input
               {...register("image")}
               type="file"
-              className="file-input"
+              className="file-input w-full"
             />
           </div>
 
           <button
             type="submit"
-            className="btn hover:bg-[#bc5800] hover:text-white">
+            className="btn hover:bg-[#bc5800] w-full hover:text-white">
             Add Item <ImSpoonKnife />
           </button>
         </form>

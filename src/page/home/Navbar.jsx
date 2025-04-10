@@ -140,7 +140,7 @@ const Navbar = () => {
           </button>
         </Link>
         <button
-          onClick={handleLogOut}
+          onClick={user && handleLogOut}
           className="cursor-pointer">
           {user ? "LOGOUT" : <Link to="/login">LOGIN</Link>}
         </button>

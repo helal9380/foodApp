@@ -16,18 +16,18 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="flex">
-      <div className="w-3/12 bg-[#bc5800] max-h-screen text-white p-10">
-        <div className="mb-10">
-          <h3 className="text-xl font-semibold">BISTRO BOSS</h3>
-          <p className="tracking-[6px] text-start uppercase">resturant</p>
+    <div className="md:flex">
+      <div className="w-full md:w-3/12 bg-[#bc5800] md:h-screen text-white p-10">
+        <div className="mb-4 text-center md:mb-10">
+          <h3 className="text-4xl md:text-2xl font-semibold">BISTRO BOSS</h3>
+          <p className="tracking-[6px] text-center uppercase">resturant</p>
         </div>
         <ul className="space-y-4">
           {isAdmin ? (
             <>
               <li>
                 <Link
-                  className="flex gap-2 uppercase"
+                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
                   to={"/dashboard/cart"}>
                   <FaHome className="text-xl" />
                   ADMIN HOME
@@ -35,15 +35,15 @@ const Dashboard = () => {
               </li>
               <li>
                 <Link
-                  className="flex gap-2 uppercase"
-                  to={"/dashboard/cart"}>
+                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
+                  to={"/dashboard/manageItem"}>
                   <FaTableList className="text-xl" />
                   MANAGE ITEMS
                 </Link>
               </li>
               <li>
                 <Link
-                  className="flex gap-2 uppercase"
+                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
                   to={"/dashboard/addItem"}>
                   <ImSpoonKnife className="text-xl" />
                   ADD ITEM
@@ -51,7 +51,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <Link
-                  className="flex gap-2 uppercase"
+                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
                   to={"/dashboard/cart"}>
                   <FaBook className="text-xl" />
                   MANAGE BOOKING
@@ -59,7 +59,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <Link
-                  className="flex gap-2 uppercase"
+                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
                   to={"/dashboard/users"}>
                   <FaUsers className="text-xl" />
                   ALL USERS
@@ -70,7 +70,7 @@ const Dashboard = () => {
             <>
               <li>
                 <Link
-                  className="flex gap-2 uppercase"
+                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
                   to={"/dashboard/cart"}>
                   <RiHome2Fill className="text-xl" />
                   user home
@@ -78,7 +78,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <Link
-                  className="flex gap-2 uppercase"
+                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
                   to={"/dashboard/cart"}>
                   <SlCalender className="text-xl" />
                   reservation
@@ -86,7 +86,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <Link
-                  className="flex gap-2 uppercase"
+                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
                   to={"/dashboard/cart"}>
                   <MdRateReview className="text-xl" />
                   ADD REVIW
@@ -94,7 +94,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <Link
-                  className="flex gap-2 uppercase"
+                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
                   to={"/dashboard/cart"}>
                   <FaShoppingCart className="text-xl" />
                   My Cart({cart.length})
@@ -102,7 +102,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <Link
-                  className="flex gap-2 uppercase"
+                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
                   to={"/dashboard/cart"}>
                   <TbBrandBooking className="text-xl" />
                   My booking
@@ -111,14 +111,14 @@ const Dashboard = () => {
             </>
           )}
 
-          <div className="bg-white w-full h-[1px] my-10"></div>
+          <div className=" w-full h-[1px] md:my-10 bg-amber-100 my-4"></div>
 
           <li>
             <Link
-              className="flex gap-2"
+              className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
               to={"/"}>
-              {" "}
-              <RiHome2Fill className="text-xl" /> Home
+              <FaHome className="text-xl" />
+              HOME
             </Link>
           </li>
         </ul>

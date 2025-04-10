@@ -44,10 +44,12 @@ const Carts = () => {
     });
   };
   return (
-    <div className="bg-white p-5">
-      <div className="text-center space-y-2 my-5 flex justify-between items-center">
-        <h2 className="text-2xl">All Carts Here! ({cart.length})</h2>
-        <h2 className="uppercase text-xl">Total price : ${totalPrice}</h2>
+    <div className="bg-white p-2 md:p-5">
+      <div className="text-center space-y-2 my-2 md:my-5 flex justify-between items-center">
+        <h2 className="text-xl md:text-2xl">All Carts Here! ({cart.length})</h2>
+        <h2 className="uppercase text-lg md:text-xl">
+          Total price : ${totalPrice}
+        </h2>
         <button
           className="btn bg-[#bc5800] text-white"
           disabled={cart.length === 0}>
