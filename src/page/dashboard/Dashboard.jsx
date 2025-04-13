@@ -103,9 +103,9 @@ const Dashboard = () => {
               <li>
                 <Link
                   className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
-                  to={"/dashboard/cart"}>
+                  to={"/dashboard/paymentHistory"}>
                   <TbBrandBooking className="text-xl" />
-                  My booking
+                  Payment History
                 </Link>
               </li>
             </>

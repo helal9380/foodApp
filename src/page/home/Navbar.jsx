@@ -9,7 +9,7 @@ import { AuthContext } from "../../context";
 import useCart from "../../hook/useCart";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const navigate = useNavigate();
 
   const { initialPath } = useParams();
@@ -19,6 +19,7 @@ const Navbar = () => {
       .then(() => {
         toast(` the user logout successfully`);
         navigate("/");
+        refetch();
       })
       .then((error) => {
         console.log(error);

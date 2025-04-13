@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ChefRecommendCard from "../../components/ChefRecommendCard";
 import SectionTitle from "../../components/SectionTitle";
 

@@ -58,7 +58,7 @@ const ManageItem = () => {
   return (
     <div>
       <div className="md:px-10 px-2">
-        <h2 className="text-lg md:text-xl my-1">
+        <h2 className="text-lg md:text-xl my-1 text-center md:text-start">
           All Menu here! ({menu.length})
         </h2>
 
@@ -121,7 +121,7 @@ const ManageItem = () => {
           <button
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
             disabled={page === 1}
-            className={`px-4 py-2 ${
+            className={`px-4 py-2 btn-sm btn uppercase ${
               page === 1
                 ? "bg-gray-300 text-black"
                 : "text-white cursor-pointer bg-[#bc5800]"
@@ -136,7 +136,7 @@ const ManageItem = () => {
           <button
             onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={page === totalPages}
-            className={`px-4 py-2 ${
+            className={`px-4 py-2 btn-sm btn uppercase ${
               page === totalPages
                 ? "bg-gray-300 text-black"
                 : "text-white cursor-pointer bg-[#bc5800]"

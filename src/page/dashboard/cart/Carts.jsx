@@ -2,6 +2,7 @@
 
 import { FaMoneyCheck } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../../../components/Loading";
 import useAxiosPublic from "../../../hook/useAxiosPublic";
@@ -50,11 +51,12 @@ const Carts = () => {
         <h2 className="uppercase text-lg md:text-xl">
           Total price : ${totalPrice}
         </h2>
-        <button
+        <Link
+          to={"/dashboard/payment"}
           className="btn bg-[#bc5800] text-white"
           disabled={cart.length === 0}>
           Paid
-        </button>
+        </Link>
       </div>
       {isLoading ? (
         <>
@@ -76,7 +78,9 @@ const Carts = () => {
             <tbody>
               {/* row 1 */}
               {cart.length === 0 ? (
-                <p>No Data Found</p>
+                <tr>
+                  <p>No Data Found</p>
+                </tr>
               ) : (
                 cart.map((item) => (
                   <tr key={item._id}>
