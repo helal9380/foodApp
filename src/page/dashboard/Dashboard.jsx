@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   return (
     <div className="md:flex">
-      <div className="w-full md:w-3/12 bg-[#bc5800] md:h-screen text-white p-10">
+      <div className="w-full md:w-3/12 bg-[#bc5800] md:h-screen text-white p-5">
         <div className="mb-4 text-center md:mb-10">
           <h3 className="text-4xl md:text-2xl font-semibold">BISTRO BOSS</h3>
           <p className="tracking-[6px] text-center uppercase">resturant</p>
@@ -28,7 +28,7 @@ const Dashboard = () => {
               <li>
                 <Link
                   className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
-                  to={"/dashboard/cart"}>
+                  to={"/dashboard/adminHome"}>
                   <FaHome className="text-xl" />
                   ADMIN HOME
                 </Link>
@@ -71,7 +71,7 @@ const Dashboard = () => {
               <li>
                 <Link
                   className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
-                  to={"/dashboard/cart"}>
+                  to={"/dashboard/userHome"}>
                   <RiHome2Fill className="text-xl" />
                   user home
                 </Link>

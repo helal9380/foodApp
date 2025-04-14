@@ -44,13 +44,14 @@ const AuthContextProvider = ({ children }) => {
         axiosPublic.post("/jwt", userInfo).then((res) => {
           if (res.data.token) {
             localStorage.setItem("access_token", res.data.token);
+            setLoading(false);
           }
         });
       } else {
         // remove token from the local storage
         localStorage.removeItem("access_token");
+        setLoading(false);
       }
-      setLoading(false);
 
       console.log(currentUser);
     });
