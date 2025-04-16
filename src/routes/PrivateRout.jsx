@@ -7,10 +7,10 @@ import useAuth from "../hook/useAuth";
 const PrivateRout = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
-  if (loading) {
+  if (loading || !user.email) {
     return <Loading />;
   }
-  if (user) {
+  if (user && user.email) {
     return children;
   }
   return (

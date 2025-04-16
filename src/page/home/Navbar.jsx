@@ -10,16 +10,18 @@ import useCart from "../../hook/useCart";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart, refetch] = useCart();
+  // const [isAdmin, isAdminLoading] = useAdmin();
   const navigate = useNavigate();
 
   const { initialPath } = useParams();
+
+  // if (isAdminLoading) return <Loading />;
 
   const handleLogOut = () => {
     logOut()
       .then(() => {
         toast(` the user logout successfully`);
         navigate("/");
-        refetch();
       })
       .then((error) => {
         console.log(error);
@@ -54,19 +56,7 @@ const Navbar = () => {
           CONTACT US
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/dashboard"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "active text-[#FFA300] transform scale-105 transition-all duration-300 ease-in-out"
-              : "font-bold hover:text-[#FFA300] hover:scale-103 transition-all duration-300 ease-in-out"
-          }>
-          DASHBOARD
-        </NavLink>
-      </li>
+
       <li>
         <NavLink
           to={`/menu`}
@@ -132,14 +122,31 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end space-x-4">
-        <Link to={"/dashboard/cart"}>
-          <button className=" relative flex items-center  gap-2 px-4 py-2 shadow-md">
-            <FaCartShopping className="text-xl" />
-            <div className="absolute -top-2 -right-2 bg-[#e49917] text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
-              +{cart.length}
-            </div>
-          </button>
-        </Link>
+        {user?.role === "admin" && (
+          <li className="list-none">
+            <NavLink
+              to="/dashboard/adminHome"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "pending"
+                  : isActive
+                  ? "active text-[#FFA300] transform scale-105 transition-all duration-300 ease-in-out"
+                  : "font-bold hover:text-[#FFA300] hover:scale-103 transition-all duration-300 ease-in-out"
+              }>
+              DASHBOARD
+            </NavLink>
+          </li>
+        )}
+        {user && (
+          <Link to={"/dashboard/cart"}>
+            <button className=" relative flex items-center  gap-2 px-4 py-2 shadow-md">
+              <FaCartShopping className="text-xl" />
+              <div className="absolute -top-2 -right-2 bg-[#e49917] text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">
+                +{cart.length}
+              </div>
+            </button>
+          </Link>
+        )}
         <button
           onClick={user && handleLogOut}
           className="cursor-pointer">

@@ -1,5 +1,5 @@
 /** @format */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaQuoteLeft } from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -12,7 +12,7 @@ import "./style.css";
 const Testimonials = () => {
   const [reviews, setReviws] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/review")
+    fetch("https://food-app-server-ochre.vercel.app/review")
       .then((res) => res.json())
       .then((data) => setReviws(data));
   }, []);

@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location?.state?.from.pathname || "/";
+  const from = location?.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,9 +20,6 @@ const Login = () => {
     signIn(email, password)
       .then(() => {
         toast(`Login success`);
-        if (from === "/register") {
-          return navigate("/");
-        }
         navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));

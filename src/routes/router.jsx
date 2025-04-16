@@ -2,7 +2,9 @@
 
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
+import ContactMe from "../page/contact/ContactMe";
 import Dashboard from "../page/dashboard/Dashboard";
+import ReviwForm from "../page/dashboard/Reviwform/ReviwForm";
 import Users from "../page/dashboard/Users";
 import AddItem from "../page/dashboard/addItem/AddItem";
 import AdminHome from "../page/dashboard/adminHome/AdminHome";
@@ -34,6 +36,10 @@ export const router = createBrowserRouter([
         element: <Menu />,
       },
       {
+        path: "/contact",
+        element: <ContactMe />,
+      },
+      {
         path: "/shop/:category",
         element: <ShopPage />,
       },
@@ -62,6 +68,10 @@ export const router = createBrowserRouter([
       {
         path: "cart",
         element: <Carts />,
+      },
+      {
+        path: "addReview",
+        element: <ReviwForm />,
       },
       {
         path: "paymentHistory",
@@ -106,7 +116,9 @@ export const router = createBrowserRouter([
           </AdminPrivateRout>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/updateItem/${params.id}`),
+          fetch(
+            `https://food-app-server-ochre.vercel.app/updateItem/${params.id}`
+          ),
       },
       {
         path: "users",

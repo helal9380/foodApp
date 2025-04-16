@@ -5,7 +5,6 @@ import { FaTableList } from "react-icons/fa6";
 import { ImSpoonKnife } from "react-icons/im";
 import { MdRateReview } from "react-icons/md";
 import { RiHome2Fill } from "react-icons/ri";
-import { SlCalender } from "react-icons/sl";
 import { TbBrandBooking } from "react-icons/tb";
 import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../../hook/useAdmin";
@@ -13,7 +12,7 @@ import useCart from "../../hook/useCart";
 
 const Dashboard = () => {
   const [cart] = useCart();
-  const [isAdmin] = useAdmin();
+  const [isAdmin, isAdminLoading] = useAdmin();
 
   return (
     <div className="md:flex">
@@ -76,18 +75,11 @@ const Dashboard = () => {
                   user home
                 </Link>
               </li>
+
               <li>
                 <Link
                   className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
-                  to={"/dashboard/cart"}>
-                  <SlCalender className="text-xl" />
-                  reservation
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex justify-start item-center gap-2 uppercase hover:bg-gray-300 hover:text-black btn btn-sm bg-[#bc5800] text-white border-none text-start"
-                  to={"/dashboard/cart"}>
+                  to={"/dashboard/addReview"}>
                   <MdRateReview className="text-xl" />
                   ADD REVIW
                 </Link>

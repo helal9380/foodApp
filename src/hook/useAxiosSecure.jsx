@@ -1,46 +1,53 @@
 /** @format */
 
 import axios from "axios";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hook/useAuth";
+
+// Create a single axios instance
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://food-app-server-ochre.vercel.app", // change to your live URL for production
 });
+
 const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { logOut } = useAuth();
-  axiosSecure.interceptors.request.use(
-    function (config) {
-      // Do something before request is sent
-      const token = localStorage.getItem("access_token");
-      config.headers.authrization = `Bearer ${token}`;
-      return config;
-    },
-    function (error) {
-      // Do something with request error
-      return Promise.reject(error);
-    }
-  );
-  // interceptors 401 403 status
-  axiosSecure.interceptors.response.use(
-    (response) => {
-      // Any status code that lie within the range of 2xx cause this function to trigger
-      // Do something with response data
-      return response;
-    },
-    async (error) => {
-      console.log("error in the interceptors", error);
-      const statusCode = error?.response?.status;
-      if (statusCode === 401 || statusCode === 403) {
-        await logOut();
-        navigate("/login");
-      }
 
-      // Any status codes that falls outside the range of 2xx cause this function to trigger
-      // Do something with response error
-      return Promise.reject(error);
-    }
-  );
+  useEffect(() => {
+    // Request interceptor
+    const requestInterceptor = axiosSecure.interceptors.request.use(
+      (config) => {
+        const token = localStorage.getItem("access-token");
+        if (token) {
+          config.headers.authorization = `Bearer ${token}`;
+        }
+        return config;
+      },
+      (error) => Promise.reject(error)
+    );
+
+    // Response interceptor
+    const responseInterceptor = axiosSecure.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        if (error?.response?.status === 401) {
+          await logOut();
+          navigate("/login");
+        } else {
+          return;
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    // Eject interceptors on cleanup to prevent duplicates
+    return () => {
+      axiosSecure.interceptors.request.eject(requestInterceptor);
+      axiosSecure.interceptors.response.eject(responseInterceptor);
+    };
+  }, [logOut, navigate]);
+
   return axiosSecure;
 };
 

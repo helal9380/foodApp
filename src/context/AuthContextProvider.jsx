@@ -33,31 +33,32 @@ const AuthContextProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
 
-      // jwt related api
       if (currentUser) {
         const userInfo = { email: currentUser.email };
-        axiosPublic.post("/jwt", userInfo).then((res) => {
-          if (res.data.token) {
-            localStorage.setItem("access_token", res.data.token);
-            setLoading(false);
-          }
-        });
+        axiosPublic
+          .post("/jwt", userInfo)
+          .then((res) => {
+            if (res?.data?.token) {
+              localStorage.setItem("access-token", res.data?.token);
+              setLoading(false); // ✅ Only after token is ready
+            } else {
+              setLoading(false);
+            }
+          })
+          .catch(() => setLoading(false)); // Handle fetch error
       } else {
-        // remove token from the local storage
-        localStorage.removeItem("access_token");
-        setLoading(false);
+        localStorage.removeItem("access-token");
+        setLoading(false); // ✅ Only set here if not logged in
       }
-
-      console.log(currentUser);
     });
 
-    return () => unsubscribe(); // Cleanup listener
-  }, [loading, axiosPublic]);
+    return () => unsubscribe();
+  }, [axiosPublic]);
+
   const updateUserInfo = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
